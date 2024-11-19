@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>404 - Page Not Found</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <style>
+        /* Custom styling */
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #dc3545;
+        }
+        p {
+            font-size: 1.2rem;
+            color: #6c757d;
+        }
+        a.btn {
+            margin-top: 20px;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>404</h1>
+        <p class="lead">Oops! The page you’re looking for doesn’t exist.</p>
+        <a th:href="@{/}" class="btn btn-danger">Return to Home Page</a>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    
+  <script src="/jquery/jquery.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
