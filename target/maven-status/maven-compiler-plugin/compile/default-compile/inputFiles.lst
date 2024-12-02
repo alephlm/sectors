@@ -1,0 +1,7 @@
+/home/aleph/projects/sectors/src/main/java/com/helmes/sectors/SectorsApplication.java
+/home/aleph/projects/sectors/src/main/java/com/helmes/sectors/controllers/EmployeeController.java
+/home/aleph/projects/sectors/src/main/java/com/helmes/sectors/exceptions/GlobalExceptionHandler.java
+/home/aleph/projects/sectors/src/main/java/com/helmes/sectors/models/Employee.java
+/home/aleph/projects/sectors/src/main/java/com/helmes/sectors/models/Sector.java
+/home/aleph/projects/sectors/src/main/java/com/helmes/sectors/repository/EmployeeRepository.java
+/home/aleph/projects/sectors/src/main/java/com/helmes/sectors/repository/SectorRepository.java

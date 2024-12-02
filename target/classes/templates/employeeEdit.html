@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Edit Employee</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+        label {
+            font-weight: 600;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .checkbox-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            padding-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .checkbox-container label {
+            font-weight: normal;
+        }
+        button[type="submit"] {
+            width: 100%;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .error {
+            color: rgb(204, 39, 39);
+        }
+    </style>
+</head>
+<body>
+  <div class="container-page">
+    <div class="container">
+        <h1>Edit Employee</h1>
+        <form th:action="@{/employee}" th:object="${employee}" th:method="put">
+            <input type="hidden" th:field="*{id}" />
+
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" th:field="*{name}" class="form-control"/>
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Sectors Error</span>
+            </div>
+
+            <div class="form-group">
+                <label for="agreeToTerms">
+                    <input type="checkbox" id="agreeToTerms" name="agreeToTerms" th:field="*{agreeToTerms}" class="form-check-input" />
+                    Agree to Terms
+                </label>
+                <span th:if="${#fields.hasErrors('agreeToTerms')}" th:errors="*{agreeToTerms}" class="error">Sectors Error</span>
+            </div>
+
+            <div class="form-group">
+                <label for="sectors">Sectors:</label>
+                <div class="checkbox-container">
+                    <div th:each="sector : ${allSectors}">
+                        <label class="form-check-label">
+                            <input type="checkbox" th:field="*{sectors}" th:value="${sector.id}" class="form-check-input" />
+                            <span th:text="${sector.description}"></span>
+                        </label>
+                    </div>
+                </div>
+                <span th:if="${#fields.hasErrors('sectors')}" th:errors="*{sectors}" class="error">Sectors Error</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+    </div>
+    <a href="/employees" class="back-link">← Employee list</a>
+  </div>
+
+  <script src="/jquery/jquery.js"></script>
+  <script src="/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
