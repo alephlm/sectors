@@ -1,3 +1,8 @@
+# Ignore the target directory
+target/
+.vscode
+.mvn
+
 # Compiled class file
 *.class
 

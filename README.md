@@ -2,7 +2,6 @@
 
 ## Prerequisites to Run the Application
 - Ensure Docker, Docker Compose, and curl are installed on your local machine.
-- Local postgres tools (pg_isready and  psql) should also be available for the start script.
 - Make sure ports **5123** and **5433** are free on your local machine.
 - The script should be run on Bash (macOS, Linux, or Windows emulator).
 

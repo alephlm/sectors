@@ -2,6 +2,8 @@ package com.helmes.sectors.models;
 
 import java.util.Set;
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -18,12 +20,15 @@ public class Employee {
   private Long id;
   
   @Column(nullable = false)
+  @NotEmpty(message = "You must provide a Name")
   private String name;
   
   @Column(nullable = false)
+  @NotNull(message = "You must agree to terms")
   private boolean agreeToTerms;
 
   @Column(nullable = false)
+  @NotEmpty(message = "You must provide a Sector")
   @ManyToMany(fetch = FetchType.EAGER) 
   @JoinTable(
     name = "employee_sectors", 

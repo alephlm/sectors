@@ -63,6 +63,9 @@
         .back-link:hover {
             text-decoration: underline;
         }
+        .error {
+            color: rgb(204, 39, 39);
+        }
     </style>
 </head>
 <body>
@@ -73,14 +76,16 @@
 
             <div class="form-group">
                 <label for="name">Name:</label>
-                <input type="text" id="name" name="name" th:field="*{name}" class="form-control" required/>
+                <input type="text" id="name" name="name" th:field="*{name}" class="form-control"/>
+                <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error">Sectors Error</span>
             </div>
 
             <div class="form-group">
                 <label for="agreeToTerms">
-                    <input type="checkbox" id="agreeToTerms" name="agreeToTerms" th:field="*{agreeToTerms}" class="form-check-input" required />
+                    <input type="checkbox" id="agreeToTerms" name="agreeToTerms" th:field="*{agreeToTerms}" class="form-check-input" />
                     Agree to Terms
                 </label>
+                <span th:if="${#fields.hasErrors('agreeToTerms')}" th:errors="*{agreeToTerms}" class="error">Sectors Error</span>
             </div>
 
             <div class="form-group">
@@ -94,6 +99,7 @@
                         </label>
                     </div>
                 </div>
+                <span th:if="${#fields.hasErrors('sectors')}" th:errors="*{sectors}" class="error">Sectors Error</span>
             </div>
 
             <button type="submit" class="btn btn-primary">Save</button>

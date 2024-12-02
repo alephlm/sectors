@@ -14,7 +14,11 @@ import com.helmes.sectors.models.Employee;
 import com.helmes.sectors.models.Sector;
 import com.helmes.sectors.repository.EmployeeRepository;
 import com.helmes.sectors.repository.SectorRepository;
+
+import jakarta.validation.Valid;
+
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 
 @Controller
 public class EmployeeController {
@@ -59,7 +63,19 @@ public class EmployeeController {
   }
 
   @PostMapping("/employee")
-  public String saveEmployee(@ModelAttribute Employee employee, Model model) {
+  public String saveEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model) {
+    if (employee.getAgreeToTerms() == false) {
+      result.rejectValue(
+      "agreeToTerms", 
+      "error.employee", 
+      "You must agree to the terms");
+    }
+    if (result.hasErrors()) {
+      List<Sector> sectors = sectorRepository.findAll();
+      model.addAttribute("employee", employee);
+      model.addAttribute("allSectors", sectors);
+      return "employeeForm";
+     }    
     try {
       Employee persistedEmployee = employeeRepository.save(employee);
       return "redirect:/employee/" + persistedEmployee.getId();
@@ -71,7 +87,19 @@ public class EmployeeController {
   }
 
   @PutMapping("/employee")
-  public String updateEmployee(@ModelAttribute Employee employee, Model model) {
+  public String updateEmployee(@Valid @ModelAttribute Employee employee, BindingResult result, Model model) {
+    if (employee.getAgreeToTerms() == false) {
+      result.rejectValue(
+      "agreeToTerms", 
+      "error.employee", 
+      "You must agree to the terms");
+    }
+    if (result.hasErrors()) {
+      List<Sector> sectors = sectorRepository.findAll();
+      model.addAttribute("employee", employee);
+      model.addAttribute("allSectors", sectors);
+      return "employeeEdit";
+    } 
     try {
       System.out.println(employee.getId());
       employeeRepository.save(employee);
